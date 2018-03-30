@@ -1,0 +1,281 @@
+\documentclass[12pt]{article}
+%% arXiv paper template by Flip Tanedo
+%% last updated: Dec 2016
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  THE USUAL PACKAGES  %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{nopageno}
+\usepackage{enumerate}
+\usepackage{parskip}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  UNUSUAL PACKAGES        %%%%
+%%%  Uncomment as necessary. %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% MATH AND PHYSICS SYMBOLS
+%% ------------------------
+%\usepackage{slashed}       % \slashed{k}
+%\usepackage{mathrsfs}      % Weinberg-esque letters
+%\usepackage{youngtab}	    % Young Tableaux
+%\usepackage{pifont}        % check marks
+%\usepackage{bbm}           % \mathbbm{1} incomp. w/ XeLaTeX 
+%\usepackage[normalem]{ulem} % for \sout
+
+
+%% CONTENT FORMAT AND DESIGN (below for general formatting)
+%% --------------------------------------------------------
+\usepackage{lipsum}        % block of text (formatting test)
+%\usepackage{color}         % \color{...}, colored text
+%\usepackage{framed}        % boxed remarks
+%\usepackage{subcaption}    % subfigures; subfig depreciated
+%\usepackage{paralist}      % compactitem
+%\usepackage{appendix}      % subappendices
+%\usepackage{cite}          % group cites (conflict: collref)
+%\usepackage{tocloft}       % Table of Contents	
+
+%% TABLES IN LaTeX
+%% ---------------
+%\usepackage{booktabs}      % professional tables
+%\usepackage{nicefrac}      % fractions in tables,
+%\usepackage{multirow}      % multirow elements in a table
+%\usepackage{arydshln} 	    % dashed lines in arrays
+
+%% Other Packages and Notes
+%% ------------------------
+%\usepackage[font=small]{caption} % caption font is small
+
+
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  PAGE FORMATTING and (RE)NEW COMMANDS  %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[margin=2cm]{geometry}   % reasonable margins
+
+\graphicspath{{figures/}}	        % set directory for figures
+
+% for capitalized things
+\newcommand{\acro}[1]{\textsc{\MakeLowercase{#1}}}    
+
+\numberwithin{equation}{section}    % set equation numbering
+\renewcommand{\tilde}{\widetilde}   % tilde over characters
+\renewcommand{\vec}[1]{\mathbf{#1}} % vectors are boldface
+
+\newcommand{\dbar}{d\mkern-6mu\mathchar'26}    % for d/2pi
+\newcommand{\ket}[1]{\left|#1\right\rangle}    % <#1|
+\newcommand{\bra}[1]{\left\langle#1\right|}    % |#1>
+\newcommand{\Xmark}{\text{\sffamily X}}        % cross out
+
+% Change list spacing (instead of package paralist)
+% from: http://en.wikibooks.org/wiki/LaTeX/List_Structures#Line_spacing
+%\let\oldenumerate\enumerate
+%\renewcommand{\enumerate}{
+%  \oldenumerate
+%  \setlength{\itemsep}{1pt}
+%  \setlength{\parskip}{0pt}
+%  \setlength{\parsep}{0pt}
+%}
+
+\let\olditemize\itemize
+\renewcommand{\itemize}{
+  \olditemize
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}
+
+
+% Commands for temporary comments
+\newcommand{\comment}[2]{\textcolor{red}{[\textbf{#1} #2]}}
+\newcommand{\flip}[1]{{\color{red} [\textbf{Flip}: {#1}]}}
+\newcommand{\email}[1]{\texttt{\href{mailto:#1}{#1}}}
+
+\newenvironment{institutions}[1][2em]{\begin{list}{}{\setlength\leftmargin{#1}\setlength\rightmargin{#1}}\item[]}{\end{list}}
+
+
+\usepackage{fancyhdr}		% to put preprint number
+
+
+
+% Commands for listings package
+%\usepackage{listings}      % \begin{lstlisting}, for code
+%
+% \lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}
+%    sets style to small true-type
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  TIKZ COMMANDS FOR EXTERNAL DIAGRAMS  %%%%
+%%%  requires -shell-escape               %%%%
+%%%  in texpad 1.7: prefs > shell esc sec %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% This is for exporting tikz figures as into a ./tikz/ subfolder.
+%% It is useful if you want pdf versions of the tikz diagrams or
+%% if you need to speed up compilation of a large document with
+%% many tikz diagrams.
+
+%\write18{} % Careful with this!
+%\usetikzlibrary{external}
+%\tikzexternalize[prefix=tikz/] % folder for external pdfs
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%  HYPERREF  %%%%
+%%%%%%%%%%%%%%%%%%%
+
+%% This package has to be at the end; can lead to conflicts
+\usepackage{microtype}
+\usepackage[
+	colorlinks=true,
+	citecolor=black,
+	linkcolor=black,
+	urlcolor=green!50!black,
+	hypertexnames=false]{hyperref}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%%  TITLE DATA  %%%%
+%%%%%%%%%%%%%%%%%%%%%
+
+%%% PREPRINT NUMBER USING fancyhdr
+%%% Don't forget to set \thispagestyle{firststyle}
+%%% ----------------------------------------------
+%\renewcommand{\headrulewidth}{0pt} % no separator
+%\fancypagestyle{firststyle}{
+%\rhead{\footnotesize \texttt{UCI-TR-2016-XX}}}
+
+
+
+\begin{document}
+
+%\thispagestyle{empty}
+%\thispagestyle{firststyle} %% to include preprint
+
+\begin{center}
+
+    {\Large \textsc{Homework 1:} 
+    \textbf{Dimensional Analysis}}
+    
+\end{center}
+
+\vskip .4cm
+
+\noindent
+\begin{tabular*}{\textwidth}{rlcrll}
+	\textsc{Course:}& Physics 231, \emph{Methods of Theoretical Physics} (2017)
+	&
+%	\hspace{1.2cm}
+	&
+	\\
+	\textsc{Instructor:}& Professor Flip Tanedo (\email{flip.tanedo@ucr.edu})
+	&
+	%\hfill
+	&
+	& 
+	\\
+	\textsc{Due by:}& Friday, October 6
+	&
+	%\hfill
+	&
+	%	
+\end{tabular*}
+
+\subsection{Warm Up} 
+As a warm up, write out the dimensions of the following quantities in the form $[Q] = L^\alpha, M^\beta T^\gamma$, that is: write out the length, mass, and time dimensions.
+
+\begin{enumerate}[(a)]
+	\item Electric charge, $e$. (In lecture we wrote out the answer; derive it.)
+	\item Action ($S = \int dt L$, where $L$ is the Lagrangian)
+	\item Magnetic field, $B$
+	\item Energy.
+\end{enumerate}
+
+\subsection{Natural Units}
+
+In high energy physics one typically works in \textbf{natural units} where we work only in mass dimension\footnote{Actually, we work in dimensions of energy. You already know how energy and mass are related from problem 1b.}, $[Q] = M^\beta$. High energy physicists are lazy, so they prefer to just write $[Q]=\beta$. Thus the mass of the electron has dimension $[m_e] = 1$. 
+
+This `gets rid' of the length and time dimensions. In order to do this \emph{without} throwing away information, one uses `universal constants' to convert between length/time and mass\footnote{In lecture we considered the meaning of `three apples.' If apples have some standardized monetary value on the world apple market, then that value is a conversion between the unit of `apple' to a unit of currency, for example.}. Fortunately, nature provides us with such constants: the speed of light, $c$, and Planck's constant, $\hbar = h/2\pi$. When using natural units, experts often just say that we impose the following curious conditions:
+\begin{align}
+	c &= 1 
+	&
+	\hbar = 1 \ .
+\end{align}
+This looks completely wrong from dimensional analysis. What gives?
+
+\begin{enumerate}[(a)]
+	\item First, get a sense of the numbers involved. Write out the numerical values of $c$ and $\hbar$ in cgs (centimeters, grams, seconds) units. Don't use more than 2 significant figures, that's just showing off. 
+	\item Suppose I have some quantity $Q$ with dimension $[Q] = L^\alpha M^\beta T^\gamma$ for some numbers $\alpha$, $\beta$, $\gamma$. What natural units is really saying is that we want to work with a different set of dimensions: energy $E$, $c$, and $\hbar$:
+		\begin{align*}
+			[Q] = E^x c^y \hbar^z .
+		\end{align*}
+		Find the values of $x$, $y$, and $z$ as a function of $\alpha$, $\beta$, $\gamma$.
+	\item When a high energy physicist says that $[Q]$ has dimension $x$ in natural units, what they really mean is that $[Q] = E^x c^y \hbar^z$ for some $y$ and $z$. For a such a quantity, you already know what the `ordinary' dimensions are so that you can multiply by the appropriate powers of $c$ and $\hbar$ to get the number in any other units. For example, the mass of the proton $m_p$ is 1~GeV, where GeV is a unit of energy. We say that $[m_p] = 1$ in natural units. What are the values of $x$ and $y$? Convert 1~GeV into grams.
+	\item Repeat problem 1 in natural units.% (The answers are integers that correspond to $x$ in part b of this problem.)
+	\item Convert the electron mass $m_e = 0.5$~MeV into a length. What does this length correspond to? (Think about what the possibilities are from quantum mechanics, check your answer.)
+	\item Explain the following poetic statement: ``high-energy colliders are microscopes.''
+\end{enumerate}
+
+
+%
+%\subsection{Gravity vs. Electromagnetism}
+%One side comment from lecture was that gravity is much weaker than electromagnetism. In both ordinary cgs and natural units, explicitly write out the values of the gravitational coupling $G_N$ and the electric coupling $e$. You should immediately feel uncomfortable comparing these numbers---why? 
+%
+%From $G_N$, write out an energy scale in GeV. This is the Planck length. Comment on how the Planck length relates to the strength of gravity. Compare it to the mass of the Higgs boson. Compare it to the mass of an apple. (\textsc{Hint}: in this question, ``compare'' means: indicate if it is much less than, much greater than, or roughly the same order.)
+
+\subsection{Energy from a sudden explosion} 
+% http://www.jstor.org/stable/pdf/98395.pdf
+% from "Dimensional Analysis" by Alan Dorsey, sec 3
+% also Art_of_Insight.pdf
+
+Suppose a large amount of energy is released in a small volume. This explosion produces a spherical shock wave where there is a sharp increase in air pressure. How does the characteristic size of the shock wave depend on time? Start by identifying the three relevant parameters for the problem and giving their dimensions in $L^\alpha M^\beta T^\gamma$ form. If you're stuck, see ``The Formation of a Blast Wave by a Very Intense Explosion.''  by Geoffrey Taylor\footnote{\url{http://www.jstor.org/stable/98395}}.
+
+\subsection{Errors in High School Physics}
+
+In lecture we examined the application of dimensional analysis to estimate the error on a simple high school physics calculation: the time it takes for an object to reach the ground after being dropped from rest at height $h$. Here we're assuming everything is human scale and on the surface of the Earth so that the zeroth order solution is $t_0 = \sqrt{2h/g}$. Estimate the size of the correction from special relativity. If you need a hint, this problem came from ``Dimensional analysis, falling bodies, and the fine art of not solving differential equations'' by Craig Bohren\footnote{\emph{Am. J. Phys.} \textbf{72}  4 , April 2004 \url{http://dx.doi.org/10.1119/1.1574042}}. 
+
+
+\section{Extra Credit}
+
+These problems are not graded and are for your edification. You are strongly encouraged to explore and discuss these topics, especially if they are in a field of interest to you.
+
+\subsection{Renormalization Group as Dimensional Analysis}
+
+Read the paper ``Dimensional Analysis in Field Theory: An Elementary Introduction to Broken Scale Invariance and the Renormalization Group Equations'' by Paul Stevenson\footnote{Annals Phys. \textbf{132} (1981) 383, \url{http://dx.doi.org/10.1016/0003-4916(81)90072-5}}. This paper describes the phenomenon of dimensional transmutation in quantum/statistical field theory in a way that strips it of the mysticism that tends to appear when you first learn field theory. In particular, it explains why dimensionless `coupling constants' are not really constant and are scale dependent. Understand the  dimensional analysis theorem in the paper and then understand how that theorem is evaded in actual physics. Theorists should take time to understand this paper carefully.\
+
+
+\subsection{Allometry}
+
+These two problems come from \emph{Mathematical Methods in Classical Mechanics} by the eminent mathematician V.I.~Arnold. 
+
+\begin{enumerate}[(a)]
+
+\item A desert animal has to cover great distance between sources of water. How does the maximal time the animal can run depend on the size $L$ of the animal?
+
+\item How does the height of an animal's jump depend on its size? Use the fact that the force applied by muscles is proportional to the strength of bones, which is itself is proportional to their cross section.
+
+\end{enumerate}
+
+%\subsection{Astroseismology}
+%% from "Dimensional Analysis" by Alan Dorsey, sec 3
+%% see also http://users-phys.au.dk/jcd/oscilnotes/chap-5.pdf
+%%	section 5.3
+%
+
+
+
+\end{document}

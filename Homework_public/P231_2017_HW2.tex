@@ -1,0 +1,335 @@
+\documentclass[12pt]{article}
+%% arXiv paper template by Flip Tanedo
+%% last updated: Dec 2016
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  THE USUAL PACKAGES  %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{nopageno}
+\usepackage{enumerate}
+\usepackage{parskip}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  UNUSUAL PACKAGES        %%%%
+%%%  Uncomment as necessary. %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tikzfeynman}
+
+\usepackage{titlesec}
+\titleformat*{\section}{\large\bfseries}
+
+%% MATH AND PHYSICS SYMBOLS
+%% ------------------------
+%\usepackage{slashed}       % \slashed{k}
+%\usepackage{mathrsfs}      % Weinberg-esque letters
+%\usepackage{youngtab}	    % Young Tableaux
+%\usepackage{pifont}        % check marks
+\usepackage{bbm}           % \mathbbm{1} incomp. w/ XeLaTeX 
+%\usepackage[normalem]{ulem} % for \sout
+
+
+%% CONTENT FORMAT AND DESIGN (below for general formatting)
+%% --------------------------------------------------------
+\usepackage{lipsum}        % block of text (formatting test)
+%\usepackage{color}         % \color{...}, colored text
+%\usepackage{framed}        % boxed remarks
+%\usepackage{subcaption}    % subfigures; subfig depreciated
+%\usepackage{paralist}      % compactitem
+%\usepackage{appendix}      % subappendices
+%\usepackage{cite}          % group cites (conflict: collref)
+%\usepackage{tocloft}       % Table of Contents	
+
+%% TABLES IN LaTeX
+%% ---------------
+%\usepackage{booktabs}      % professional tables
+%\usepackage{nicefrac}      % fractions in tables,
+%\usepackage{multirow}      % multirow elements in a table
+%\usepackage{arydshln} 	    % dashed lines in arrays
+
+%% Other Packages and Notes
+%% ------------------------
+%\usepackage[font=small]{caption} % caption font is small
+
+
+
+%\renewcommand{\thesection}{}
+%\renewcommand{\thesubsection}{\arabic{subsection}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  PAGE FORMATTING and (RE)NEW COMMANDS  %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[margin=2cm]{geometry}   % reasonable margins
+
+\graphicspath{{figures/}}	        % set directory for figures
+
+% for capitalized things
+\newcommand{\acro}[1]{\textsc{\MakeLowercase{#1}}}    
+
+\numberwithin{equation}{section}    % set equation numbering
+\renewcommand{\tilde}{\widetilde}   % tilde over characters
+\renewcommand{\vec}[1]{\mathbf{#1}} % vectors are boldface
+
+\newcommand{\dbar}{d\mkern-6mu\mathchar'26}    % for d/2pi
+\newcommand{\ket}[1]{\left|#1\right\rangle}    % <#1|
+\newcommand{\bra}[1]{\left\langle#1\right|}    % |#1>
+\newcommand{\Xmark}{\text{\sffamily X}}        % cross out
+
+% Change list spacing (instead of package paralist)
+% from: http://en.wikibooks.org/wiki/LaTeX/List_Structures#Line_spacing
+%\let\oldenumerate\enumerate
+%\renewcommand{\enumerate}{
+%  \oldenumerate
+%  \setlength{\itemsep}{1pt}
+%  \setlength{\parskip}{0pt}
+%  \setlength{\parsep}{0pt}
+%}
+
+\let\olditemize\itemize
+\renewcommand{\itemize}{
+  \olditemize
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}
+
+
+% Commands for temporary comments
+\newcommand{\comment}[2]{\textcolor{red}{[\textbf{#1} #2]}}
+\newcommand{\flip}[1]{{\color{red} [\textbf{Flip}: {#1}]}}
+\newcommand{\email}[1]{\texttt{\href{mailto:#1}{#1}}}
+
+\newenvironment{institutions}[1][2em]{\begin{list}{}{\setlength\leftmargin{#1}\setlength\rightmargin{#1}}\item[]}{\end{list}}
+
+
+\usepackage{fancyhdr}		% to put preprint number
+
+
+
+% Commands for listings package
+%\usepackage{listings}      % \begin{lstlisting}, for code
+%
+% \lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}
+%    sets style to small true-type
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  TIKZ COMMANDS FOR EXTERNAL DIAGRAMS  %%%%
+%%%  requires -shell-escape               %%%%
+%%%  in texpad 1.7: prefs > shell esc sec %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% This is for exporting tikz figures as into a ./tikz/ subfolder.
+%% It is useful if you want pdf versions of the tikz diagrams or
+%% if you need to speed up compilation of a large document with
+%% many tikz diagrams.
+
+%\write18{} % Careful with this!
+%\usetikzlibrary{external}
+%\tikzexternalize[prefix=tikz/] % folder for external pdfs
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%  HYPERREF  %%%%
+%%%%%%%%%%%%%%%%%%%
+
+%% This package has to be at the end; can lead to conflicts
+\usepackage{microtype}
+\usepackage[
+	colorlinks=true,
+	citecolor=black,
+	linkcolor=black,
+	urlcolor=green!50!black,
+	hypertexnames=false]{hyperref}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%%  TITLE DATA  %%%%
+%%%%%%%%%%%%%%%%%%%%%
+
+%%% PREPRINT NUMBER USING fancyhdr
+%%% Don't forget to set \thispagestyle{firststyle}
+%%% ----------------------------------------------
+%\renewcommand{\headrulewidth}{0pt} % no separator
+%\fancypagestyle{firststyle}{
+%\rhead{\footnotesize \texttt{UCI-TR-2016-XX}}}
+
+
+
+\begin{document}
+
+%\thispagestyle{empty}
+%\thispagestyle{firststyle} %% to include preprint
+
+\begin{center}
+
+    {\Large \textsc{Homework 2:} 
+    \textbf{Vectors and all that}}
+
+
+    
+\end{center}
+
+\vskip .4cm
+
+\noindent
+\begin{tabular*}{\textwidth}{rlcrll}
+	\textsc{Course:}& Physics 231, \emph{Methods of Theoretical Physics} (2017)
+	&
+%	\hspace{1.2cm}
+	&
+	\\
+	\textsc{Instructor:}& Flip Tanedo (\email{flip.tanedo@ucr.edu})
+	&
+	%\hfill
+	&
+	& 
+	\\
+	\textsc{Due by:}& Friday, October 13
+	&
+	%\hfill
+	&
+	%	
+\end{tabular*}
+
+
+
+
+\section{Black Hole Entropy and Dimensional Analysis}
+
+% I believe I got this from Zee's GR book
+
+\subsection{The Planck Mass}
+
+In natural units, the Newton constant $G$ has [mass] dimension $[G] = -2$, so that we can define a mass scale
+\begin{align}
+	M_P = \frac{1}{\sqrt{G}} \ .
+\end{align}
+This is called the \textbf{Planck mass}. Restore the factors of $\hbar$ and $c$ to make this definition correct in `unnatural' units where we keep track of length and time dimensions.
+
+\subsection{Hawking Radiation}
+
+Black holes can evaporate by Hawking radiation. A cartoon picture of this process is as follows: quantum mechanics + special relativity tells us that the vacuum (`empty' space) is composed of virtual particle--anti-particle pairs. Near the event horizon of a black hole, one of these particles can fall into the black hole while the other radiates away as a physical particle. This means that black holes have a temperature. 
+
+Use dimensional analysis to determine how this \textbf{Hawking temperature} scales with the mass of the black hole. How does $T_H$ scale with the combination $GM$? Observe that the black hole gets \emph{hotter} as it loses energy.
+
+
+\textsc{Hint}: there's one subtlety. There are two mass scales in the problem: the black hole mass, $M$, and the Planck mass, $M_P = 1/\sqrt{G}$. (In natural units, of course). In order to be able to use dimensional analysis, the additional piece of information is that $G$ is a gravitational coupling, so that gravitational effects should go like $GM$. 
+
+
+\subsection{The Holographic Principle}
+
+Recall from thermodynamics that entropy, $S$, is related to energy $E$ and temperature $T$ by
+\begin{align}
+	\frac{dS}{dE} = \frac{1}{T} \ .
+\end{align}
+\begin{enumerate}[(i)]
+	\item Identify the temperature with the Hawking temperature $T=T_H$ and set the energy to be the mass of the black hole so that $dE = dM$. Integrate with respect to the black hole mass to find how entropy scales with mass, $S \sim M^?$.
+	\item The radius of the black hole's event horizon scales like $R = GM$. How does the black hole's entropy scale with its characteristic length scale? 
+	\item Contrast the above result to the expected scaling of entropy in ordinary thermodynamics. Recall that entropy is an \emph{extensive}\footnote{An \textbf{extensive} property is one that adds for separate subsystem. Consider a system of two lazy cats. The mass of the combined system is equal to the sum of the masses of each cat. This is in contrast to temperature, which is \textbf{intensive}; the temperature of the multi-lazy-cat system is $T_\text{cat}$ to matter how many cats there are. This example obviously breaks down at large numbers of cats.} measure of the number of microstates in a system.
+\end{enumerate}
+
+The solution to this problem is spelled out in  the introduction to Zee's \emph{Einstein's Gravity in a Nutshell}. The `holographic principle' is the proposal that the properties of the black hole are encoded on its surface rather than its volume. This is analogous to how a hologram is a 3D image encoded onto a 2D surface. A manifestation of the holographic principle is the AdS/CFT correspondence, which posits that certain theories of strongly interacting systems in $d$-dimensions are mathematically identical to a weakly-coupled $(d+1)$-dimensional gravitational theory.
+
+
+
+
+
+\section{A 1D Model of a Molecule}
+
+% I'm taking this from Matthews & Walker
+% see solutions folder for explicit answer, it's not hard
+
+
+Consider the following \emph{spherical cow}\footnote{\url{https://en.wikipedia.org/wiki/Spherical_cow}} model of a water molecule (H$_2$O): imagine three point masses connected to each other by springs representing the atomic forces within the molecule. For this model, the point masses and springs are constrained to lie on a rigid hoop so that the problem is one dimensional. %Denote by $x_{ij}$ the inter-atomic distance between masses $i$ and $j$. We would like to understand the behavior of this simple ``molecule.''
+
+
+\begin{center}
+	\begin{tikzpicture}[line width=1.5 pt, scale=1]
+		%
+		\draw[gluon] (235:1) arc (235:125:1);
+		\draw[gluon] (115:1) arc (115:5:1);
+		\draw[gluon] (-5:1) arc (-5:-115:1);
+		\draw[fill=black] (240:1) circle (.1);
+		\draw[fill=black] (120:1) circle (.1);
+		\draw[fill=black] (0:1) circle (.1);
+		\node at (240:1.5) {$m_1$};
+		\node at (120:1.5) {$m_2$};
+		\node at (0:1.5) {$m_3$};
+%		\node at (60:1.5) {$k$};
+%		\node at (180:1.5) {$k$};
+%		\node at (300:1.5) {$k$};
+		\draw[<->, line width=1 pt] (225:1.5) arc (225:135:1.5);
+		\draw[<->, line width=1 pt] (105:1.5) arc (105:15:1.5);
+		\draw[<->, line width=1 pt] (-15:1.5) arc (-15:-105:1.5);
+		\node at (60:2) {$x_{23}$};
+		\node at (180:2) {$x_{12}$};
+		\node at (300:2) {$x_{13}$};
+	\end{tikzpicture}
+\end{center}
+
+For simplicity, assume all of the masses and spring constants are degenerate,
+\begin{align}
+	m_i &= m & k_i &= k 
+	&
+	\text{for } i=1,2,3 
+	\ .
+\end{align}
+
+\subsection{Equation of Motion}
+Denote by $x$ the distance along the hoop. This is essentially an angular variable. Denote by $\vec{x}$ a vector of positions along the hoop. The spring forces acting on mass $i$ depends on $x_{ij} = x^i - x^j$. Using Hooke's law, write down the equation of motion in the following form:
+\begin{align}
+	\ddot{\vec{x}} &= V \vec{x} \ .
+	\label{eq:eom}
+\end{align}
+Explicitly write the components of $V$ as a $3\times 3$ matrix in this basis.
+
+\subsection{Eigenvalue Problem}
+
+\emph{This is the important part of the problem.}
+Diagonalize $V$, identify the eigenvalues $\omega_i$ and eigenvectors $\vec{v}_i$. We refer to the set of eigenvalues as the \textbf{spectrum} of $V$. What is the physical interpretation of the spectrum? Draw a diagram showing the behavior of the eigenvalue with the lowest eigenvector. 
+
+
+\subsection{Solution}
+
+\emph{This is the tedious part of the problem so that you can write down ``equations 'n stuff.''}
+Solve the eigenvalue problem in the $\left\{ \vec{v}_i\right \}$ basis. In this basis (\ref{eq:eom}) is simple to solve, right? Write down the general solution of the problem in the $\left\{ \vec{x}_i\right \}$ basis as a function of the initial positions and velocities in the system. 
+
+
+\subsection{Things to think about}
+
+\emph{No need to write up an answer this question, just think about it.}
+
+How would the problem have changed if the masses and spring constants were not degenerate? 
+
+You may enjoy reading a similar ``bead on a hoop with springs'' set up in \url{https://arxiv.org/abs/physics/0506195}. The paper discusses how the classical system exhibits the same critical behavior discussed in David Simmons-Duffin's colloquium last Thursday\footnote{If you missed the talk, here's a recording of a similar talk at the Perimeter Institute: \url{https://www.perimeterinstitute.ca/videos/conformal-bootstrap-magnets-boiling-water}}.
+
+\section*{Extra Credit: A 2D Model of a Molecule}
+% see Zee 
+% solution: section 3.10 of http://www.hep.caltech.edu/~fcp/math/groupTheory/represen.pdf
+
+\emph{Extra credit problems are not graded and are for your edification. You are strongly encouraged to explore and discuss these topics, especially if they are in a field of interest to you.}
+
+Consider the molecular model in Problem 2, except now the system is not constrained to live on a hoop. Instead, the three masses are free to move on a two-dimensional plane with springs connecting them to one another. This is a slightly more realistic model of the water molecule. 
+
+What is the dimensionality of the configuration space? In other words, if we write $\vec{x} = x^i \left|\vec{e}_i\right\rangle$, what is the range of $i$? Set up and solve the problem. Feel free to use \emph{Mathematica}'s \texttt{Eigensystem} function. Without doing any work, what is the interpretation of the eigenvectors with the lowest eigenvalue? What types of motion do these eigenvectors describe? You should be able to answer this without even doing any work on the problem.
+
+\emph{Important comment}: This system exhibits $S_3$ permutation symmetry. The tools of representation theory (group theory) then allow one figure out the main features of the problem without doing any heavy lifting. A tool called \textbf{Schur's Lemma} (which sounds fancy, but is something you know intuitively in quantum mechanics) tells you how many different eigenvalues there are and the number of states with those eigenvalues. 
+
+
+
+
+
+
+
+\end{document}

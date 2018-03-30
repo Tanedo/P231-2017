@@ -1,0 +1,331 @@
+\documentclass[12pt]{article}
+%% arXiv paper template by Flip Tanedo
+%% last updated: Dec 2016
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  THE USUAL PACKAGES  %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{nopageno}
+\usepackage{enumerate}
+\usepackage{parskip}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  UNUSUAL PACKAGES        %%%%
+%%%  Uncomment as necessary. %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tikzfeynman}
+
+\usepackage{titlesec}
+\titleformat*{\section}{\large\bfseries}
+
+%% MATH AND PHYSICS SYMBOLS
+%% ------------------------
+%\usepackage{slashed}       % \slashed{k}
+%\usepackage{mathrsfs}      % Weinberg-esque letters
+%\usepackage{youngtab}	    % Young Tableaux
+%\usepackage{pifont}        % check marks
+\usepackage{bbm}           % \mathbbm{1} incomp. w/ XeLaTeX 
+%\usepackage[normalem]{ulem} % for \sout
+
+
+%% CONTENT FORMAT AND DESIGN (below for general formatting)
+%% --------------------------------------------------------
+\usepackage{lipsum}        % block of text (formatting test)
+%\usepackage{color}         % \color{...}, colored text
+%\usepackage{framed}        % boxed remarks
+%\usepackage{subcaption}    % subfigures; subfig depreciated
+%\usepackage{paralist}      % compactitem
+%\usepackage{appendix}      % subappendices
+%\usepackage{cite}          % group cites (conflict: collref)
+%\usepackage{tocloft}       % Table of Contents	
+
+%% TABLES IN LaTeX
+%% ---------------
+%\usepackage{booktabs}      % professional tables
+%\usepackage{nicefrac}      % fractions in tables,
+%\usepackage{multirow}      % multirow elements in a table
+%\usepackage{arydshln} 	    % dashed lines in arrays
+
+%% Other Packages and Notes
+%% ------------------------
+%\usepackage[font=small]{caption} % caption font is small
+
+
+
+%\renewcommand{\thesection}{}
+%\renewcommand{\thesubsection}{\arabic{subsection}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  PAGE FORMATTING and (RE)NEW COMMANDS  %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[margin=2cm]{geometry}   % reasonable margins
+
+\graphicspath{{figures/}}	        % set directory for figures
+
+% for capitalized things
+\newcommand{\acro}[1]{\textsc{\MakeLowercase{#1}}}    
+
+\numberwithin{equation}{section}    % set equation numbering
+\renewcommand{\tilde}{\widetilde}   % tilde over characters
+\renewcommand{\vec}[1]{\mathbf{#1}} % vectors are boldface
+
+\newcommand{\dbar}{d\mkern-6mu\mathchar'26}    % for d/2pi
+\newcommand{\ket}[1]{\left|#1\right\rangle}    % <#1|
+\newcommand{\bra}[1]{\left\langle#1\right|}    % |#1>
+\newcommand{\Xmark}{\text{\sffamily X}}        % cross out
+
+% Change list spacing (instead of package paralist)
+% from: http://en.wikibooks.org/wiki/LaTeX/List_Structures#Line_spacing
+%\let\oldenumerate\enumerate
+%\renewcommand{\enumerate}{
+%  \oldenumerate
+%  \setlength{\itemsep}{1pt}
+%  \setlength{\parskip}{0pt}
+%  \setlength{\parsep}{0pt}
+%}
+
+\let\olditemize\itemize
+\renewcommand{\itemize}{
+  \olditemize
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}
+
+
+% Commands for temporary comments
+\newcommand{\comment}[2]{\textcolor{red}{[\textbf{#1} #2]}}
+\newcommand{\flip}[1]{{\color{red} [\textbf{Flip}: {#1}]}}
+\newcommand{\email}[1]{\texttt{\href{mailto:#1}{#1}}}
+
+\newenvironment{institutions}[1][2em]{\begin{list}{}{\setlength\leftmargin{#1}\setlength\rightmargin{#1}}\item[]}{\end{list}}
+
+
+\usepackage{fancyhdr}		% to put preprint number
+
+
+
+% Commands for listings package
+%\usepackage{listings}      % \begin{lstlisting}, for code
+%
+% \lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}
+%    sets style to small true-type
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  TIKZ COMMANDS FOR EXTERNAL DIAGRAMS  %%%%
+%%%  requires -shell-escape               %%%%
+%%%  in texpad 1.7: prefs > shell esc sec %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% This is for exporting tikz figures as into a ./tikz/ subfolder.
+%% It is useful if you want pdf versions of the tikz diagrams or
+%% if you need to speed up compilation of a large document with
+%% many tikz diagrams.
+
+%\write18{} % Careful with this!
+%\usetikzlibrary{external}
+%\tikzexternalize[prefix=tikz/] % folder for external pdfs
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%  HYPERREF  %%%%
+%%%%%%%%%%%%%%%%%%%
+
+%% This package has to be at the end; can lead to conflicts
+\usepackage{microtype}
+\usepackage[
+	colorlinks=true,
+	citecolor=black,
+	linkcolor=black,
+	urlcolor=green!50!black,
+	hypertexnames=false]{hyperref}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%%  TITLE DATA  %%%%
+%%%%%%%%%%%%%%%%%%%%%
+
+%%% PREPRINT NUMBER USING fancyhdr
+%%% Don't forget to set \thispagestyle{firststyle}
+%%% ----------------------------------------------
+%\renewcommand{\headrulewidth}{0pt} % no separator
+%\fancypagestyle{firststyle}{
+%\rhead{\footnotesize \texttt{UCI-TR-2016-XX}}}
+
+
+
+\begin{document}
+
+%\thispagestyle{empty}
+%\thispagestyle{firststyle} %% to include preprint
+
+\begin{center}
+
+    {\Large \textsc{Homework 3:} 
+    \textbf{Vector Space, Function Space}}
+
+
+    
+\end{center}
+
+\vskip .4cm
+
+\noindent
+\begin{tabular*}{\textwidth}{rlcrll}
+	\textsc{Course:}& Physics 231, \emph{Methods of Theoretical Physics} (2017)
+	&
+%	\hspace{1.2cm}
+	&
+	\\
+	\textsc{Instructor:}& Flip Tanedo (\email{flip.tanedo@ucr.edu})
+	&
+	%\hfill
+	&
+	& 
+	\\
+	\textsc{Due by:}& Friday, October 20
+	&
+	%\hfill
+	&
+	%	
+\end{tabular*}
+
+
+
+
+\section{The Adjoint Representation of SU(2)}
+
+You are familiar with the \textbf{Pauli matrices} from quantum mechanics:
+\begin{align}
+	\sigma^1 =&
+	\begin{pmatrix}
+		0 & 1 \\
+		1 & 0
+	\end{pmatrix}
+	&
+	\sigma^2 =&
+	\begin{pmatrix}
+		0 & -i \\
+		i & 0
+	\end{pmatrix}
+	&
+	\sigma^3 =&
+	\begin{pmatrix}
+		1 & 0 \\
+		0 & -1
+	\end{pmatrix}
+	\ .
+	\label{eq:pauli}
+\end{align}
+One of the first places where these show up is the \textbf{spin operator} acting on spinors. We say that these the \textbf{generators} of rotations in the spinor representation are $T^a = \frac{1}{2} \sigma^a$. The mathematics of how symmetries act on physical states is known as representation theory. Technically, the $T^a$ are generators of a group\footnote{
+\textbf{Extra credit}: what is the precise relation between SU(2) and the group of rotations? What if we enlarge this to the group of rotations and boosts? What if we enlarge this to the group of rotations, boosts, and spacetime translations?} called SU(2).
+
+\subsection{Adjoint Rep}
+
+An interesting representation of SU(2) is called the \textbf{adjoint}. In this case, the matrices $T^a$ play two roles: they are both basis \emph{vectors} of a three-dimensional real vector space, and a basis of linear \emph{operators} that act on this space. Denote the vectors by:
+\begin{align}
+	\left|\vec{v}\right\rangle &= 
+	v^a \left|T^a \right\rangle 
+	= 
+ 	\frac{1}{2} v^a \sigma^a 
+	= 
+	\frac 12
+	\begin{pmatrix}
+		v^3 & v^1 - i v^2 \\
+		v^1 - i v^2 & -v^3
+	\end{pmatrix}
+	&
+	v^a \in \mathbbm{R} \ .
+\end{align}
+Here we are still summing over repeated indices, but we are not being picky about upper or lower placement.
+We can also define $T^a$ to be an operator acting on the vector space spanned by $|T^b\rangle$ by defining the acting on $T^a$ on $|T^b\rangle$,
+\begin{align}
+	T^a | T^b \rangle 
+	= \left| \left[ T^a, T^b \right] \right\rangle  
+	\label{eq:action}
+	\ .
+%	= \epsilon^{abc} |T^c\rangle  \ ,
+\end{align}
+%where $\epsilon^{abc}$ is the totally antisymmetric tensor which takes values of $\pm 1$. 
+
+Briefly explain why this is a linear transformation. (You may ask: \emph{hey, what specifically do I have to do?}... that's what this problem is about.) It may help to write the commutation relations of $T^a$ in a compact way, perhaps using the totally antisymmetric Levi-Civita tensor, $\epsilon^{abc}$.
+
+Let $A = A^a T^a$ be a transformation formed out of the $T^a$ operators. Write out $A$ as a $3\times 3$ matrix acting on the basis $|T^a\rangle$. 
+
+\subsection{What's the electric charge of a $W$ boson?}
+
+The $T^3$ is special because it's diagonal\footnote{Note: here we mean \emph{diagonal} in the sense of the previous sub-problem, not in the sense how we wrote $\sigma^3$.}. This means that it is a charge operator, $Q = T^3$. 
+
+What is the charge of $|T^3\rangle$? In other words, $Q|T^3\rangle = \lambda|T^3\rangle$. The charge is $\lambda$. 
+
+Frustratingly, $|T^1\rangle$ and $|T^2\rangle$ are not charge eigenstates. However, linear combinations of them are. What are these eigenvectors and what are their charges? You'll need to use a complex coefficient.
+
+\textsc{Comment}: this representation is important in particle physics. The SU(2) in this case is an \emph{internal} symmetry that is historically called \textbf{isospin} (it is part of \textbf{electroweak} symmetry). Internal symmetries come from matheatical redundancies in how a theory is defined\footnote{For the cognoscenti: internal---or \emph{gauge}---symmetries are described by a fiber bundle structure over spacetime. This is similar to general relativity.} and are associated with \emph{forces}. It's really fascinating how these types of symmetries show up in condensed matter systems.
+
+
+
+\section{A cute integral}
+
+%https://math.stackexchange.com/questions/942263/really-advanced-techniques-of-integration-definite-or-indefinite/943212
+
+In class we made a big deal about the requirements for function space: you should define a metric, a domain, and boundary conditions. We're going to ignore all of those things to explore a cute shortcut to calculate a particular \emph{indefinite} integral. 
+
+Consider a two dimensional vector space spanned by the functions
+\begin{align}
+	\left|f_1\right\rangle
+	&= f_1(x) = 
+	e^{ax} \cos bx
+	&
+	\left|f_2\right\rangle
+	&=
+	f_2(x) = 
+	e^{ax} \sin bx \ ,
+\end{align}
+where $a$ and $b$ are constants. Forget orthonormality or boundary conditions for this problem. The derivative $d/dx$ is a linear operator that acts on this space. Write down the derivative as a $2\times 2$ matrix in the above basis, $D$.
+
+Invert $D$ in the usual way that you learned to invert $2\times 2$ matrices during your childhood. Call this matrix $D^{-1}$. 
+
+Now stop and think: the inverse of a derivative is an indefinite integral\footnote{Ignore the constant term.}. Thus acting with $D^{-1}$ on the vector $|f_1\rangle$ should be understood as an integral of $f_1(x)$. Show that, indeed,
+\begin{align}
+	D^{-1} |f_1\rangle = \int dx\, e^{ax} \cos bx \ .
+\end{align}
+Feel free to use \emph{Mathematica} to do the indefinite integral on the right-hand side. 
+
+
+\section{Discretized Second Derivatives}
+
+We showed in class that the discretized second derivative $D^2$ is written in matrix notation as
+\begin{align}
+	\left(D^2\right)^i_{\phantom{i}j}
+	&= 
+	\frac{1}{\Delta x^2}
+	\left(
+	\delta_j^{(i-1)}
+	- 2 \delta_j^{i}
+	+
+	\delta_j^{(i+1)}
+	\right) \ .
+\end{align}
+If that looks weird, convince yourself that it's equivalent to what we wrote in class. The above form is correct \emph{except} for the inclusion of boundary conditions. We saw that for \textbf{Dirichlet} boundary conditions, we could say that $f^0 = f^{N+1} = 0$ and instead focus on the components $\left(f^1, \cdots, f^N\right)^T$. 
+
+Now consider the case of \textbf{periodic} boundary conditions. This means that if you travel past one edge of the domain, you end up back at the opposite edge\footnote{Classic examples of periodic boundary conditions are \emph{Pacman} and \emph{Asteroids}. If you are not familiar with those classic video games, then be content that youth is wasted on the young.}.
+
+Following the Dirichlet case, you may introduce fictitious `boundary' coordinates $f^0$ and $f^{N+1}$. What are these fixed to be? Write out what the $D^2$ matrix looks like for periodic conditions. Contrast this to the Dirichlet case.
+
+\textsc{Comment}: observe that one of the key features of periodic boundary conditions is that there is no `special' location: there are effectively \emph{no} boundaries. This is why we like to use periodic boundary conditions when we do numerical simulations of large (potentially infinite) systems: we don't want the edges of our simulation to effect the bulk behavior, so we choose boundary conditions with no edges.
+
+\textsc{Comment}: Recall from quantum mechanics that Hermiticity (self-adjoint-ness) is really important if you want real eigenvalues. Observe that the matrix representations of $D^2$ in this problem are both self-adjoint/Hermitian. 
+
+\end{document}
